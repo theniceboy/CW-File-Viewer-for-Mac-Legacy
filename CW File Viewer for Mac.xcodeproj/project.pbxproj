@@ -14,6 +14,7 @@
 		630ECCDC1F286EE0008AC835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630ECCDA1F286EE0008AC835 /* Main.storyboard */; };
 		630ECCE71F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCE61F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift */; };
 		630ECCF21F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */; };
+		630ECD001F288CA3008AC835 /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCFF1F288CA3008AC835 /* Directory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		630ECCED1F286EE0008AC835 /* CW File Viewer for MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CW File Viewer for MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CW_File_Viewer_for_MacUITests.swift; sourceTree = "<group>"; };
 		630ECCF31F286EE0008AC835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630ECCFF1F288CA3008AC835 /* Directory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		630ECCD01F286EE0008AC835 /* CW File Viewer for Mac */ = {
 			isa = PBXGroup;
 			children = (
+				630ECCFF1F288CA3008AC835 /* Directory.swift */,
 				630ECCD11F286EE0008AC835 /* AppDelegate.swift */,
 				630ECCD31F286EE0008AC835 /* ViewController.swift */,
 				630ECCD81F286EE0008AC835 /* Assets.xcassets */,
@@ -264,6 +267,7 @@
 				630ECCD41F286EE0008AC835 /* ViewController.swift in Sources */,
 				630ECCD71F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld in Sources */,
 				630ECCD21F286EE0008AC835 /* AppDelegate.swift in Sources */,
+				630ECD001F288CA3008AC835 /* Directory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,12 +410,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FLLKWS94W7;
 				INFOPLIST_FILE = "CW File Viewer for Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -420,12 +426,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FLLKWS94W7;
 				INFOPLIST_FILE = "CW File Viewer for Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -511,6 +519,7 @@
 				630ECCF81F286EE0008AC835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		630ECCF91F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +528,7 @@
 				630ECCFB1F286EE0008AC835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		630ECCFC1F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +537,7 @@
 				630ECCFE1F286EE0008AC835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
