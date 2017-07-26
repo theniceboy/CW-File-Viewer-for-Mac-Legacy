@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		630ECCD21F286EE0008AC835 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCD11F286EE0008AC835 /* AppDelegate.swift */; };
+		630ECCD41F286EE0008AC835 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCD31F286EE0008AC835 /* ViewController.swift */; };
+		630ECCD71F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCD51F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld */; };
+		630ECCD91F286EE0008AC835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 630ECCD81F286EE0008AC835 /* Assets.xcassets */; };
+		630ECCDC1F286EE0008AC835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630ECCDA1F286EE0008AC835 /* Main.storyboard */; };
+		630ECCE71F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCE61F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift */; };
+		630ECCF21F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		630ECCE31F286EE0008AC835 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630ECCC61F286EE0008AC835 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 630ECCCD1F286EE0008AC835;
+			remoteInfo = "CW File Viewer for Mac";
+		};
+		630ECCEE1F286EE0008AC835 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630ECCC61F286EE0008AC835 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 630ECCCD1F286EE0008AC835;
+			remoteInfo = "CW File Viewer for Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		630ECCCE1F286EE0008AC835 /* CW File Viewer for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CW File Viewer for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		630ECCD11F286EE0008AC835 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		630ECCD31F286EE0008AC835 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		630ECCD61F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CW_File_Viewer_for_Mac.xcdatamodel; sourceTree = "<group>"; };
+		630ECCD81F286EE0008AC835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		630ECCDB1F286EE0008AC835 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		630ECCDD1F286EE0008AC835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630ECCE21F286EE0008AC835 /* CW File Viewer for MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CW File Viewer for MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		630ECCE61F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CW_File_Viewer_for_MacTests.swift; sourceTree = "<group>"; };
+		630ECCE81F286EE0008AC835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630ECCED1F286EE0008AC835 /* CW File Viewer for MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CW File Viewer for MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CW_File_Viewer_for_MacUITests.swift; sourceTree = "<group>"; };
+		630ECCF31F286EE0008AC835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		630ECCCB1F286EE0008AC835 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCDF1F286EE0008AC835 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCEA1F286EE0008AC835 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		630ECCC51F286EE0008AC835 = {
+			isa = PBXGroup;
+			children = (
+				630ECCD01F286EE0008AC835 /* CW File Viewer for Mac */,
+				630ECCE51F286EE0008AC835 /* CW File Viewer for MacTests */,
+				630ECCF01F286EE0008AC835 /* CW File Viewer for MacUITests */,
+				630ECCCF1F286EE0008AC835 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		630ECCCF1F286EE0008AC835 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				630ECCCE1F286EE0008AC835 /* CW File Viewer for Mac.app */,
+				630ECCE21F286EE0008AC835 /* CW File Viewer for MacTests.xctest */,
+				630ECCED1F286EE0008AC835 /* CW File Viewer for MacUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		630ECCD01F286EE0008AC835 /* CW File Viewer for Mac */ = {
+			isa = PBXGroup;
+			children = (
+				630ECCD11F286EE0008AC835 /* AppDelegate.swift */,
+				630ECCD31F286EE0008AC835 /* ViewController.swift */,
+				630ECCD81F286EE0008AC835 /* Assets.xcassets */,
+				630ECCDA1F286EE0008AC835 /* Main.storyboard */,
+				630ECCDD1F286EE0008AC835 /* Info.plist */,
+				630ECCD51F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld */,
+			);
+			path = "CW File Viewer for Mac";
+			sourceTree = "<group>";
+		};
+		630ECCE51F286EE0008AC835 /* CW File Viewer for MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				630ECCE61F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift */,
+				630ECCE81F286EE0008AC835 /* Info.plist */,
+			);
+			path = "CW File Viewer for MacTests";
+			sourceTree = "<group>";
+		};
+		630ECCF01F286EE0008AC835 /* CW File Viewer for MacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */,
+				630ECCF31F286EE0008AC835 /* Info.plist */,
+			);
+			path = "CW File Viewer for MacUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		630ECCCD1F286EE0008AC835 /* CW File Viewer for Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630ECCF61F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for Mac" */;
+			buildPhases = (
+				630ECCCA1F286EE0008AC835 /* Sources */,
+				630ECCCB1F286EE0008AC835 /* Frameworks */,
+				630ECCCC1F286EE0008AC835 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CW File Viewer for Mac";
+			productName = "CW File Viewer for Mac";
+			productReference = 630ECCCE1F286EE0008AC835 /* CW File Viewer for Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		630ECCE11F286EE0008AC835 /* CW File Viewer for MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630ECCF91F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacTests" */;
+			buildPhases = (
+				630ECCDE1F286EE0008AC835 /* Sources */,
+				630ECCDF1F286EE0008AC835 /* Frameworks */,
+				630ECCE01F286EE0008AC835 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				630ECCE41F286EE0008AC835 /* PBXTargetDependency */,
+			);
+			name = "CW File Viewer for MacTests";
+			productName = "CW File Viewer for MacTests";
+			productReference = 630ECCE21F286EE0008AC835 /* CW File Viewer for MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		630ECCEC1F286EE0008AC835 /* CW File Viewer for MacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630ECCFC1F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacUITests" */;
+			buildPhases = (
+				630ECCE91F286EE0008AC835 /* Sources */,
+				630ECCEA1F286EE0008AC835 /* Frameworks */,
+				630ECCEB1F286EE0008AC835 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				630ECCEF1F286EE0008AC835 /* PBXTargetDependency */,
+			);
+			name = "CW File Viewer for MacUITests";
+			productName = "CW File Viewer for MacUITests";
+			productReference = 630ECCED1F286EE0008AC835 /* CW File Viewer for MacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		630ECCC61F286EE0008AC835 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "David Chen";
+				TargetAttributes = {
+					630ECCCD1F286EE0008AC835 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FLLKWS94W7;
+						ProvisioningStyle = Automatic;
+					};
+					630ECCE11F286EE0008AC835 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FLLKWS94W7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 630ECCCD1F286EE0008AC835;
+					};
+					630ECCEC1F286EE0008AC835 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FLLKWS94W7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 630ECCCD1F286EE0008AC835;
+					};
+				};
+			};
+			buildConfigurationList = 630ECCC91F286EE0008AC835 /* Build configuration list for PBXProject "CW File Viewer for Mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 630ECCC51F286EE0008AC835;
+			productRefGroup = 630ECCCF1F286EE0008AC835 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				630ECCCD1F286EE0008AC835 /* CW File Viewer for Mac */,
+				630ECCE11F286EE0008AC835 /* CW File Viewer for MacTests */,
+				630ECCEC1F286EE0008AC835 /* CW File Viewer for MacUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		630ECCCC1F286EE0008AC835 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630ECCD91F286EE0008AC835 /* Assets.xcassets in Resources */,
+				630ECCDC1F286EE0008AC835 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCE01F286EE0008AC835 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCEB1F286EE0008AC835 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		630ECCCA1F286EE0008AC835 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630ECCD41F286EE0008AC835 /* ViewController.swift in Sources */,
+				630ECCD71F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld in Sources */,
+				630ECCD21F286EE0008AC835 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCDE1F286EE0008AC835 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630ECCE71F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630ECCE91F286EE0008AC835 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630ECCF21F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		630ECCE41F286EE0008AC835 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 630ECCCD1F286EE0008AC835 /* CW File Viewer for Mac */;
+			targetProxy = 630ECCE31F286EE0008AC835 /* PBXContainerItemProxy */;
+		};
+		630ECCEF1F286EE0008AC835 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 630ECCCD1F286EE0008AC835 /* CW File Viewer for Mac */;
+			targetProxy = 630ECCEE1F286EE0008AC835 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		630ECCDA1F286EE0008AC835 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				630ECCDB1F286EE0008AC835 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		630ECCF41F286EE0008AC835 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		630ECCF51F286EE0008AC835 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		630ECCF71F286EE0008AC835 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		630ECCF81F286EE0008AC835 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		630ECCFA1F286EE0008AC835 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CW File Viewer for Mac.app/Contents/MacOS/CW File Viewer for Mac";
+			};
+			name = Debug;
+		};
+		630ECCFB1F286EE0008AC835 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CW File Viewer for Mac.app/Contents/MacOS/CW File Viewer for Mac";
+			};
+			name = Release;
+		};
+		630ECCFD1F286EE0008AC835 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "CW File Viewer for Mac";
+			};
+			name = Debug;
+		};
+		630ECCFE1F286EE0008AC835 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FLLKWS94W7;
+				INFOPLIST_FILE = "CW File Viewer for MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.cwsoft.CW-File-Viewer-for-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "CW File Viewer for Mac";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		630ECCC91F286EE0008AC835 /* Build configuration list for PBXProject "CW File Viewer for Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630ECCF41F286EE0008AC835 /* Debug */,
+				630ECCF51F286EE0008AC835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		630ECCF61F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630ECCF71F286EE0008AC835 /* Debug */,
+				630ECCF81F286EE0008AC835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		630ECCF91F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630ECCFA1F286EE0008AC835 /* Debug */,
+				630ECCFB1F286EE0008AC835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		630ECCFC1F286EE0008AC835 /* Build configuration list for PBXNativeTarget "CW File Viewer for MacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630ECCFD1F286EE0008AC835 /* Debug */,
+				630ECCFE1F286EE0008AC835 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		630ECCD51F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				630ECCD61F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodel */,
+			);
+			currentVersion = 630ECCD61F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodel */;
+			path = CW_File_Viewer_for_Mac.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 630ECCC61F286EE0008AC835 /* Project object */;
+}
