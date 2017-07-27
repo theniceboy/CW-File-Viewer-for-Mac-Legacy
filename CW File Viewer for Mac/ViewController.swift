@@ -22,6 +22,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     // MARK: Vars & Lets
     
+    var firstOpen: Bool = true
+    
     let fileManager: FileManager = FileManager()
     
     var curFile: String = "", curTextFile: String = "", curPath: String = "/", historyPaths: [String] = []
@@ -67,8 +69,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     func loadTextFile (fileurl: URL) {
         if (fileManager.isReadableFile(atPath: fileurl.path)) {
-            if (curContent != tvMain.string && curTextFile != "") {
-                try! tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+            if (!firstOpen) {
+                if (curContent != tvMain.string) {
+                    try! tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+                }
+            } else {
+                firstOpen = false
             }
             var str = ""
             do {
@@ -77,12 +83,20 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 curTextFile = fileurl.path
                 curContent = tvMain.string!
             } catch {
-                let alert = NSAlert()
-                alert.messageText = "文件编码不识别，请手动更改编码至UTF-8"
-                alert.alertStyle = NSAlertStyle.critical
-                alert.addButton(withTitle: "确定")
-                alert.runModal()
-                NSWorkspace.shared().open(fileurl)
+                do {
+                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+                    str = try String(contentsOf: fileurl, encoding: String.Encoding(rawValue: enc))
+                    tvMain.string = str
+                    curTextFile = fileurl.path
+                    curContent = tvMain.string!
+                } catch {
+                    let alert = NSAlert()
+                    alert.messageText = "文件编码不识别，请手动更改编码至UTF-8"
+                    alert.alertStyle = NSAlertStyle.critical
+                    alert.addButton(withTitle: "确定")
+                    alert.runModal()
+                    NSWorkspace.shared().open(fileurl)
+                }
             }
             tfFileName.stringValue = fileurl.lastPathComponent
         }
@@ -97,7 +111,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         tbFiles.doubleAction = #selector(tableViewDoubleClick(_:))
         
-        curPath = fileManager.homeDirectoryForCurrentUser.path + "/Documents"
+        curPath = fileManager.homeDirectoryForCurrentUser.path + "/Desktop"
         historyPaths.append(curPath)
         directory = Directory(folderURL: URL(string: curPath)!)
         reloadFileList(backorForward: false)
@@ -189,10 +203,14 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             alert.runModal()
             return
         }
-        //fileManager.createFile(atPath: (file?.path)!, contents: <#T##Data?#>, attributes: <#T##[String : Any]?#>)
-        fileManager.createFile(atPath: (file?.path)!, contents: nil, attributes: nil)
-        //let tmpStr = "123123"
-        //ry! tmpStr.write(to: file!, atomically: true, encoding: .utf8)
+        
+        if (file?.pathExtension == "") {
+            try! fileManager.createDirectory(atPath: (file?.path)!, withIntermediateDirectories: false, attributes: nil)
+            //btnRefresh_Clicked(self)
+            //return
+        } else {
+            fileManager.createFile(atPath: (file?.path)!, contents: nil, attributes: nil)
+        }
         
         btnRefresh_Clicked(self)
         var index = 0
@@ -228,7 +246,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     @IBAction func BtnAddDateTime_Clicked(_ sender: Any) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd  HH：mm"
+        formatter.dateFormat = "yyyy-MM-dd HH;mm"
         tfFileName.stringValue.append(formatter.string(from: NSDate() as Date))
     }
     
