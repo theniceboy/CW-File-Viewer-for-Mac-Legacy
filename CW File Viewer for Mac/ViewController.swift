@@ -19,6 +19,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet var tvMain: NSTextView!
     @IBOutlet weak var tfFileName: NSTextField!
     @IBOutlet weak var btnDelete: NSButton!
+    @IBOutlet weak var lbFileCount: NSTextField!
+    @IBOutlet weak var lbFileWordCount: NSTextField!
     
     // MARK: Vars & Lets
     
@@ -65,6 +67,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         } else {
             btnForward.isEnabled = false
         }
+        
+        lbFileCount.stringValue = "\(directoryItems.count)个项目"
     }
     
     func loadTextFile (fileurl: URL) {
@@ -90,16 +94,26 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     curTextFile = fileurl.path
                     curContent = tvMain.string!
                 } catch {
-                    let alert = NSAlert()
-                    alert.messageText = "文件编码不识别，请手动更改编码至UTF-8"
-                    alert.alertStyle = NSAlertStyle.critical
-                    alert.addButton(withTitle: "确定")
-                    alert.runModal()
-                    NSWorkspace.shared().open(fileurl)
+                    do {
+                        str = try String(contentsOf: fileurl, encoding: String.Encoding.ascii)
+                        tvMain.string = str
+                        curTextFile = fileurl.path
+                        curContent = tvMain.string!
+                    } catch {
+                        let alert = NSAlert()
+                        alert.messageText = "文件编码不识别，请手动更改编码至UTF-8"
+                        alert.alertStyle = NSAlertStyle.critical
+                        alert.addButton(withTitle: "确定")
+                        alert.runModal()
+                        NSWorkspace.shared().open(fileurl)
+                    }
                 }
             }
             tfFileName.stringValue = fileurl.lastPathComponent
         }
+        let startoffile = NSPoint(x: 0, y: 0)
+        tvMain.scroll(startoffile)
+        lbFileWordCount.stringValue = "\(curContent.characters.count)字 \(curContent.components(separatedBy: " ").count)英文单词"
     }
     
     // MARK: Startups
@@ -177,7 +191,15 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             alert.runModal()
             return
         }
-        try! fileManager.moveItem(atPath: curFile, toPath: (file?.path)!)
+        do {
+            try fileManager.moveItem(atPath: curFile, toPath: (file?.path)!)
+        } catch {
+            let alert = NSAlert()
+            alert.messageText = "重命名文件失败"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+        }
         curFile = (file?.path)!
         if (file?.pathExtension.lowercased() == "txt") {
             curTextFile = curFile
@@ -197,7 +219,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         let file = URL(string: curPath)?.appendingPathComponent(tfFileName.stringValue.trimmingCharacters(in: .whitespaces))
         if (fileManager.fileExists(atPath: (file?.path)!)) {
             let alert = NSAlert()
-            alert.messageText = "同名文件已存在"
+            alert.messageText = "同名文件/文件夹已存在"
             alert.alertStyle = NSAlertStyle.critical
             alert.addButton(withTitle: "确定")
             alert.runModal()
@@ -205,7 +227,15 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         }
         
         if (file?.pathExtension == "") {
-            try! fileManager.createDirectory(atPath: (file?.path)!, withIntermediateDirectories: false, attributes: nil)
+            do {
+                try fileManager.createDirectory(atPath: (file?.path)!, withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                let alert = NSAlert()
+                alert.messageText = "新建文件夹失败"
+                alert.alertStyle = NSAlertStyle.critical
+                alert.addButton(withTitle: "确定")
+                alert.runModal()
+            }
             //btnRefresh_Clicked(self)
             //return
         } else {

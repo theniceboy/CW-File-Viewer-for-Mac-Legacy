@@ -686,14 +686,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="1233" height="675"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-Zz-2KL">
+                                <rect key="frame" x="378" y="608" width="712" height="27"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File Name" drawsBackground="YES" id="mlz-EU-F6B">
+                                    <font key="font" metaFont="system" size="18"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVg-ND-sg5">
-                                <rect key="frame" x="20" y="20" width="350" height="615"/>
+                                <rect key="frame" x="20" y="41" width="350" height="594"/>
                                 <clipView key="contentView" id="DzN-tx-jyx">
-                                    <rect key="frame" x="1" y="0.0" width="348" height="614"/>
+                                    <rect key="frame" x="1" y="0.0" width="348" height="593"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="T68-xR-LAt" viewBased="YES" id="dp0-HY-JyW">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="591"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="570"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -911,12 +919,20 @@
                                     <action selector="BtnAddDateTime_Clicked:" target="XfG-lQ-9wD" id="FaW-nY-sri"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-Zz-2KL">
-                                <rect key="frame" x="378" y="608" width="712" height="27"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File Name" drawsBackground="YES" id="mlz-EU-F6B">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slP-6X-8yT">
+                                <rect key="frame" x="18" y="20" width="37" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="QIg-jB-xtB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajm-EE-GL0">
+                                <rect key="frame" x="344" y="20" width="26" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0字" id="bSM-8Z-tyk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
@@ -926,12 +942,14 @@
                             <constraint firstItem="3X0-pX-48O" firstAttribute="height" secondItem="qDH-Fq-YZ3" secondAttribute="height" id="4Bg-kK-oTd"/>
                             <constraint firstItem="5Kg-aH-VrA" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="12" id="4nd-ao-844"/>
                             <constraint firstItem="A8L-hX-lFa" firstAttribute="leading" secondItem="TZ5-KS-CDD" secondAttribute="trailing" constant="12" id="7y4-Kt-vXN"/>
+                            <constraint firstItem="slP-6X-8yT" firstAttribute="top" secondItem="nVg-ND-sg5" secondAttribute="bottom" constant="4" id="BD1-JZ-wv6"/>
                             <constraint firstItem="5Kg-aH-VrA" firstAttribute="leading" secondItem="uzw-Mb-aiY" secondAttribute="trailing" constant="10" id="Bek-aS-kaU"/>
                             <constraint firstItem="vSG-Zs-ZE7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="DhI-uD-8oe"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="width" secondItem="JpN-fR-FUu" secondAttribute="width" id="ERs-lS-V9w"/>
                             <constraint firstAttribute="bottom" secondItem="TtT-vR-yUv" secondAttribute="bottom" constant="20" id="Fn4-J6-yLs"/>
                             <constraint firstItem="3X0-pX-48O" firstAttribute="width" secondItem="qDH-Fq-YZ3" secondAttribute="width" id="GBW-iu-uHe"/>
                             <constraint firstItem="OSa-PR-qdj" firstAttribute="top" secondItem="x0k-gH-eOv" secondAttribute="top" id="GWh-gC-xJC"/>
+                            <constraint firstItem="slP-6X-8yT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Hwu-Jw-xny"/>
                             <constraint firstItem="iTj-hS-gd9" firstAttribute="top" secondItem="2tl-Zz-2KL" secondAttribute="top" id="I4J-h6-9fc"/>
                             <constraint firstItem="TtT-vR-yUv" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="IRj-Ud-W9Q"/>
                             <constraint firstItem="A8L-hX-lFa" firstAttribute="height" secondItem="TZ5-KS-CDD" secondAttribute="height" id="L6q-5n-U1S"/>
@@ -939,7 +957,6 @@
                             <constraint firstItem="uzw-Mb-aiY" firstAttribute="leading" secondItem="OSa-PR-qdj" secondAttribute="trailing" constant="10" id="LqK-Zq-Sd7"/>
                             <constraint firstAttribute="trailing" secondItem="5Kg-aH-VrA" secondAttribute="trailing" constant="20" id="Ns9-oe-Vbw"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="height" secondItem="JpN-fR-FUu" secondAttribute="height" id="ON7-is-cUy"/>
-                            <constraint firstAttribute="bottom" secondItem="nVg-ND-sg5" secondAttribute="bottom" constant="20" id="Onu-Cg-pmO"/>
                             <constraint firstItem="TZ5-KS-CDD" firstAttribute="height" secondItem="3X0-pX-48O" secondAttribute="height" id="Par-pJ-L24"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="top" secondItem="vSG-Zs-ZE7" secondAttribute="top" id="UWP-yJ-lOr"/>
                             <constraint firstItem="2tl-Zz-2KL" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="UtL-W5-vWf"/>
@@ -957,13 +974,16 @@
                             <constraint firstItem="OSa-PR-qdj" firstAttribute="height" secondItem="x0k-gH-eOv" secondAttribute="height" id="ojp-Bk-lf4"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="height" secondItem="vSG-Zs-ZE7" secondAttribute="height" id="pip-ow-0Un"/>
                             <constraint firstItem="nVg-ND-sg5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qHg-dm-8oq"/>
+                            <constraint firstAttribute="bottom" secondItem="slP-6X-8yT" secondAttribute="bottom" constant="20" id="qS9-cb-tY2"/>
                             <constraint firstItem="A8L-hX-lFa" firstAttribute="width" secondItem="TZ5-KS-CDD" secondAttribute="width" id="rQL-Qe-hXt"/>
                             <constraint firstItem="A8L-hX-lFa" firstAttribute="top" secondItem="TZ5-KS-CDD" secondAttribute="top" id="sHo-di-tOA"/>
                             <constraint firstItem="iTj-hS-gd9" firstAttribute="leading" secondItem="2tl-Zz-2KL" secondAttribute="trailing" constant="8" id="sXZ-uL-9vI"/>
                             <constraint firstAttribute="trailing" secondItem="iTj-hS-gd9" secondAttribute="trailing" constant="20" id="uNB-bl-4n8"/>
+                            <constraint firstItem="Ajm-EE-GL0" firstAttribute="top" secondItem="nVg-ND-sg5" secondAttribute="bottom" constant="4" id="vES-HL-eQL"/>
                             <constraint firstItem="JpN-fR-FUu" firstAttribute="top" secondItem="2tl-Zz-2KL" secondAttribute="bottom" constant="8" id="vIf-gX-LBn"/>
                             <constraint firstItem="iTj-hS-gd9" firstAttribute="height" secondItem="2tl-Zz-2KL" secondAttribute="height" id="wYS-N4-BOO"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="leading" secondItem="JpN-fR-FUu" secondAttribute="trailing" constant="12" id="xkW-l6-vTg"/>
+                            <constraint firstItem="TtT-vR-yUv" firstAttribute="leading" secondItem="Ajm-EE-GL0" secondAttribute="trailing" constant="10" id="yZb-dz-F0r"/>
                             <constraint firstItem="TZ5-KS-CDD" firstAttribute="leading" secondItem="3X0-pX-48O" secondAttribute="trailing" constant="12" id="ynv-jb-m78"/>
                             <constraint firstItem="TZ5-KS-CDD" firstAttribute="top" secondItem="3X0-pX-48O" secondAttribute="top" id="z3I-yT-qUp"/>
                             <constraint firstItem="TtT-vR-yUv" firstAttribute="top" secondItem="3X0-pX-48O" secondAttribute="bottom" constant="10" id="zSd-W3-nft"/>
@@ -975,6 +995,8 @@
                         <outlet property="btnBack" destination="vSG-Zs-ZE7" id="aQa-Iy-qKB"/>
                         <outlet property="btnDelete" destination="uzw-Mb-aiY" id="YHw-t4-vyX"/>
                         <outlet property="btnForward" destination="x0k-gH-eOv" id="bmW-Dw-rcF"/>
+                        <outlet property="lbFileCount" destination="slP-6X-8yT" id="zH0-aO-veu"/>
+                        <outlet property="lbFileWordCount" destination="Ajm-EE-GL0" id="b4Y-ya-fOx"/>
                         <outlet property="pathControl" destination="5Kg-aH-VrA" id="olM-B1-dwv"/>
                         <outlet property="tbFiles" destination="dp0-HY-JyW" id="sE0-TU-UM3"/>
                         <outlet property="tfFileName" destination="2tl-Zz-2KL" id="2VM-gs-Hm7"/>
