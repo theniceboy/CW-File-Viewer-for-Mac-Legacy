@@ -15,6 +15,7 @@
 		630ECCE71F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCE61F286EE0008AC835 /* CW_File_Viewer_for_MacTests.swift */; };
 		630ECCF21F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */; };
 		630ECD001F288CA3008AC835 /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ECCFF1F288CA3008AC835 /* Directory.swift */; };
+		632363361F29BCAC00470F9A /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632363351F29BCAC00470F9A /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		630ECCF11F286EE0008AC835 /* CW_File_Viewer_for_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CW_File_Viewer_for_MacUITests.swift; sourceTree = "<group>"; };
 		630ECCF31F286EE0008AC835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		630ECCFF1F288CA3008AC835 /* Directory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
+		632363351F29BCAC00470F9A /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		630ECCD01F286EE0008AC835 /* CW File Viewer for Mac */ = {
 			isa = PBXGroup;
 			children = (
+				632363351F29BCAC00470F9A /* WindowController.swift */,
 				630ECCFF1F288CA3008AC835 /* Directory.swift */,
 				630ECCD11F286EE0008AC835 /* AppDelegate.swift */,
 				630ECCD31F286EE0008AC835 /* ViewController.swift */,
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				630ECCD41F286EE0008AC835 /* ViewController.swift in Sources */,
+				632363361F29BCAC00470F9A /* WindowController.swift in Sources */,
 				630ECCD71F286EE0008AC835 /* CW_File_Viewer_for_Mac.xcdatamodeld in Sources */,
 				630ECCD21F286EE0008AC835 /* AppDelegate.swift in Sources */,
 				630ECD001F288CA3008AC835 /* Directory.swift in Sources */,

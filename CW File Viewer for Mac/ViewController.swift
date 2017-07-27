@@ -70,11 +70,21 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             if (curContent != tvMain.string && curTextFile != "") {
                 try! tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
             }
-            let str = try! String(contentsOf: fileurl, encoding: String.Encoding.utf8)
-            tvMain.string = str
+            var str = ""
+            do {
+                str = try String(contentsOf: fileurl, encoding: String.Encoding.utf8)
+                tvMain.string = str
+                curTextFile = fileurl.path
+                curContent = tvMain.string!
+            } catch {
+                let alert = NSAlert()
+                alert.messageText = "文件编码不识别，请手动更改编码至UTF-8"
+                alert.alertStyle = NSAlertStyle.critical
+                alert.addButton(withTitle: "确定")
+                alert.runModal()
+                NSWorkspace.shared().open(fileurl)
+            }
             tfFileName.stringValue = fileurl.lastPathComponent
-            curTextFile = fileurl.path
-            curContent = tvMain.string!
         }
     }
     
@@ -102,6 +112,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     override var representedObject: Any? {
         didSet {
+            directory = Directory(folderURL: representedObject as! URL)
+            reloadFileList(backorForward: false)
         }
     }
     
@@ -186,7 +198,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         var index = 0
         for item in directoryItems {
             if (item.name == file?.lastPathComponent) {
-                var indexset = NSIndexSet(index: index)
+                let indexset = NSIndexSet(index: index)
                 tbFiles.selectRowIndexes(indexset as IndexSet, byExtendingSelection: false)
                 return
             }
@@ -206,6 +218,18 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBAction func btnDelete_Clicked(_ sender: Any) {
         try!  fileManager.removeItem(atPath: curFile)
         btnRefresh_Clicked(self)
+        btnDelete.isEnabled = false
+    }
+    
+    @IBAction func BtnAddTXTExtAndNew_Clicked(_ sender: Any) {
+        tfFileName.stringValue.append(".txt")
+        btnNewFile_Clicked(self)
+    }
+    
+    @IBAction func BtnAddDateTime_Clicked(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd  HH：mm"
+        tfFileName.stringValue.append(formatter.string(from: NSDate() as Date))
     }
     
     // MARK: TableView DataSource
