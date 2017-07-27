@@ -664,7 +664,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="CW File Viewer for Mac 1.0 beta" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -787,6 +787,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="btnRename_Clicked:" target="XfG-lQ-9wD" id="OHg-wv-f5t"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3X0-pX-48O">
                                 <rect key="frame" x="616" y="476" width="122" height="36"/>
@@ -794,19 +797,20 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                 </buttonCell>
-                            </button>
-                            <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kg-aH-VrA">
-                                <rect key="frame" x="136" y="549" width="992" height="22"/>
-                                <pathCell key="cell" selectable="YES" refusesFirstResponder="YES" alignment="left" id="0I7-7d-jQF">
-                                    <font key="font" metaFont="system"/>
-                                    <url key="url" string="file:///Applications/"/>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <allowedTypes/>
-                                </pathCell>
                                 <connections>
-                                    <action selector="pathControl_Clicked:" target="XfG-lQ-9wD" id="6lI-OO-dmS"/>
+                                    <action selector="btnNewFile_Clicked:" target="XfG-lQ-9wD" id="yvA-HQ-4Qt"/>
                                 </connections>
-                            </pathControl>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-KS-CDD">
+                                <rect key="frame" x="738" y="476" width="122" height="36"/>
+                                <buttonCell key="cell" type="push" title="+.TXT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="N75-h2-61m">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="AddTXTExt_Clicked:" target="XfG-lQ-9wD" id="68s-2v-Co9"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vSG-Zs-ZE7">
                                 <rect key="frame" x="14" y="541" width="62" height="36"/>
                                 <constraints>
@@ -844,6 +848,9 @@
                                             <size key="minSize" width="748" height="451"/>
                                             <size key="maxSize" width="778" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="AZN-bQ-BpD"/>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -857,21 +864,57 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OSa-PR-qdj">
+                                <rect key="frame" x="132" y="541" width="62" height="36"/>
+                                <buttonCell key="cell" type="push" title="刷新" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="awK-k1-9FU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnRefresh_Clicked:" target="XfG-lQ-9wD" id="L7H-Fq-JpE"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-Mb-aiY">
+                                <rect key="frame" x="192" y="541" width="62" height="36"/>
+                                <buttonCell key="cell" type="push" title="删除" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qkH-d5-6Hh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnDelete_Clicked:" target="XfG-lQ-9wD" id="Sg5-qw-Qnp"/>
+                                </connections>
+                            </button>
+                            <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kg-aH-VrA">
+                                <rect key="frame" x="258" y="549" width="870" height="22"/>
+                                <pathCell key="cell" selectable="YES" refusesFirstResponder="YES" alignment="left" id="0I7-7d-jQF">
+                                    <font key="font" metaFont="system"/>
+                                    <url key="url" string="file:///Applications/"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedTypes/>
+                                </pathCell>
+                                <connections>
+                                    <action selector="pathControl_Clicked:" target="XfG-lQ-9wD" id="6lI-OO-dmS"/>
+                                </connections>
+                            </pathControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="JpN-fR-FUu" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="26P-Qc-UOn"/>
+                            <constraint firstItem="OSa-PR-qdj" firstAttribute="width" secondItem="x0k-gH-eOv" secondAttribute="width" id="3CA-H7-Xma"/>
                             <constraint firstItem="3X0-pX-48O" firstAttribute="height" secondItem="qDH-Fq-YZ3" secondAttribute="height" id="4Bg-kK-oTd"/>
                             <constraint firstItem="5Kg-aH-VrA" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="12" id="4nd-ao-844"/>
+                            <constraint firstItem="5Kg-aH-VrA" firstAttribute="leading" secondItem="uzw-Mb-aiY" secondAttribute="trailing" constant="10" id="Bek-aS-kaU"/>
                             <constraint firstItem="vSG-Zs-ZE7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="DhI-uD-8oe"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="width" secondItem="JpN-fR-FUu" secondAttribute="width" id="ERs-lS-V9w"/>
                             <constraint firstAttribute="bottom" secondItem="TtT-vR-yUv" secondAttribute="bottom" constant="20" id="Fn4-J6-yLs"/>
                             <constraint firstItem="3X0-pX-48O" firstAttribute="width" secondItem="qDH-Fq-YZ3" secondAttribute="width" id="GBW-iu-uHe"/>
+                            <constraint firstItem="OSa-PR-qdj" firstAttribute="top" secondItem="x0k-gH-eOv" secondAttribute="top" id="GWh-gC-xJC"/>
                             <constraint firstItem="TtT-vR-yUv" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="IRj-Ud-W9Q"/>
                             <constraint firstItem="2tl-Zz-2KL" firstAttribute="top" secondItem="nVg-ND-sg5" secondAttribute="top" id="LGq-Jq-5lo"/>
+                            <constraint firstItem="uzw-Mb-aiY" firstAttribute="leading" secondItem="OSa-PR-qdj" secondAttribute="trailing" constant="10" id="LqK-Zq-Sd7"/>
                             <constraint firstAttribute="trailing" secondItem="5Kg-aH-VrA" secondAttribute="trailing" constant="20" id="Ns9-oe-Vbw"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="height" secondItem="JpN-fR-FUu" secondAttribute="height" id="ON7-is-cUy"/>
                             <constraint firstAttribute="bottom" secondItem="nVg-ND-sg5" secondAttribute="bottom" constant="20" id="Onu-Cg-pmO"/>
-                            <constraint firstItem="5Kg-aH-VrA" firstAttribute="leading" secondItem="x0k-gH-eOv" secondAttribute="trailing" constant="8" id="Rey-KQ-Wzj"/>
+                            <constraint firstItem="TZ5-KS-CDD" firstAttribute="height" secondItem="3X0-pX-48O" secondAttribute="height" id="Par-pJ-L24"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="top" secondItem="vSG-Zs-ZE7" secondAttribute="top" id="UWP-yJ-lOr"/>
                             <constraint firstItem="2tl-Zz-2KL" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="UtL-W5-vWf"/>
                             <constraint firstItem="nVg-ND-sg5" firstAttribute="top" secondItem="x0k-gH-eOv" secondAttribute="bottom" constant="5" id="V6n-oy-csF"/>
@@ -879,19 +922,28 @@
                             <constraint firstAttribute="trailing" secondItem="TtT-vR-yUv" secondAttribute="trailing" constant="20" id="crX-d0-cq6"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="top" secondItem="JpN-fR-FUu" secondAttribute="top" id="eDn-ZJ-qVO"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="width" secondItem="vSG-Zs-ZE7" secondAttribute="width" id="edn-bP-Sn4"/>
+                            <constraint firstItem="uzw-Mb-aiY" firstAttribute="height" secondItem="OSa-PR-qdj" secondAttribute="height" id="ex6-8q-rJZ"/>
+                            <constraint firstItem="TZ5-KS-CDD" firstAttribute="width" secondItem="3X0-pX-48O" secondAttribute="width" id="mJW-ag-fcE"/>
+                            <constraint firstItem="OSa-PR-qdj" firstAttribute="leading" secondItem="x0k-gH-eOv" secondAttribute="trailing" constant="10" id="mxZ-uy-Et1"/>
                             <constraint firstItem="3X0-pX-48O" firstAttribute="leading" secondItem="qDH-Fq-YZ3" secondAttribute="trailing" constant="12" id="n77-CJ-Kwu"/>
                             <constraint firstItem="3X0-pX-48O" firstAttribute="top" secondItem="qDH-Fq-YZ3" secondAttribute="top" id="o5r-sZ-d61"/>
+                            <constraint firstItem="uzw-Mb-aiY" firstAttribute="width" secondItem="OSa-PR-qdj" secondAttribute="width" id="oFb-aC-6ZW"/>
+                            <constraint firstItem="OSa-PR-qdj" firstAttribute="height" secondItem="x0k-gH-eOv" secondAttribute="height" id="ojp-Bk-lf4"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="height" secondItem="vSG-Zs-ZE7" secondAttribute="height" id="pip-ow-0Un"/>
                             <constraint firstItem="nVg-ND-sg5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qHg-dm-8oq"/>
                             <constraint firstAttribute="trailing" secondItem="2tl-Zz-2KL" secondAttribute="trailing" constant="20" id="uuS-lx-Mlb"/>
                             <constraint firstItem="JpN-fR-FUu" firstAttribute="top" secondItem="2tl-Zz-2KL" secondAttribute="bottom" constant="8" id="vIf-gX-LBn"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="leading" secondItem="JpN-fR-FUu" secondAttribute="trailing" constant="12" id="xkW-l6-vTg"/>
+                            <constraint firstItem="TZ5-KS-CDD" firstAttribute="leading" secondItem="3X0-pX-48O" secondAttribute="trailing" constant="12" id="ynv-jb-m78"/>
+                            <constraint firstItem="TZ5-KS-CDD" firstAttribute="top" secondItem="3X0-pX-48O" secondAttribute="top" id="z3I-yT-qUp"/>
                             <constraint firstItem="TtT-vR-yUv" firstAttribute="top" secondItem="3X0-pX-48O" secondAttribute="bottom" constant="10" id="zSd-W3-nft"/>
                             <constraint firstItem="vSG-Zs-ZE7" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="zsx-Ef-wQy"/>
+                            <constraint firstItem="uzw-Mb-aiY" firstAttribute="top" secondItem="OSa-PR-qdj" secondAttribute="top" id="zvt-I5-INi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnBack" destination="vSG-Zs-ZE7" id="aQa-Iy-qKB"/>
+                        <outlet property="btnDelete" destination="uzw-Mb-aiY" id="YHw-t4-vyX"/>
                         <outlet property="btnForward" destination="x0k-gH-eOv" id="bmW-Dw-rcF"/>
                         <outlet property="pathControl" destination="5Kg-aH-VrA" id="olM-B1-dwv"/>
                         <outlet property="tbFiles" destination="dp0-HY-JyW" id="sE0-TU-UM3"/>

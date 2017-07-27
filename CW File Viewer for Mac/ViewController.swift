@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate {
+class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate, NSTextViewDelegate {
 
     // MARK: Outlets
     
@@ -18,12 +18,14 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var pathControl: NSPathControl!
     @IBOutlet var tvMain: NSTextView!
     @IBOutlet weak var tfFileName: NSTextField!
+    @IBOutlet weak var btnDelete: NSButton!
     
     // MARK: Vars & Lets
     
     let fileManager: FileManager = FileManager()
     
-    var curPath: String = "/Users/david/Desktop", historyPaths: [String] = [];
+    var curFile: String = "", curTextFile: String = "", curPath: String = "/", historyPaths: [String] = []
+    var curContent: String = ""
     var historyIndex: Int = 0
     
     let sizeFormatter = ByteCountFormatter()
@@ -36,7 +38,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     func tvInit () {
         tvMain.font = NSFont.systemFont(ofSize: 18)
-        
     }
     
     func reloadFileList(backorForward: Bool) {
@@ -45,13 +46,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         directoryItems = (directory?.contentsOrderedBy(sortOrder, ascending: sortAscending))!
         tbFiles.reloadData()
         if (historyPaths.count > 0 && !backorForward) {
-            if (curPath != historyPaths[historyIndex]) {
-                historyIndex += 1
-                if (historyIndex >= historyPaths.count) {
-                    historyPaths.append(curPath)
-                }
-                historyPaths[historyIndex] = curPath
+            historyIndex += 1
+            if (historyIndex >= historyPaths.count) {
+                historyPaths.append(curPath)
             }
+            historyPaths[historyIndex] = curPath
         }
         
         if (historyIndex > 0) {
@@ -68,11 +67,14 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     func loadTextFile (fileurl: URL) {
         if (fileManager.isReadableFile(atPath: fileurl.path)) {
-            //var str: String = "\(NSData(contentsOfFile: path))"
+            if (curContent != tvMain.string && curTextFile != "") {
+                try! tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+            }
             let str = try! String(contentsOf: fileurl, encoding: String.Encoding.utf8)
             tvMain.string = str
-            
             tfFileName.stringValue = fileurl.lastPathComponent
+            curTextFile = fileurl.path
+            curContent = tvMain.string!
         }
     }
     
@@ -85,12 +87,15 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         tbFiles.doubleAction = #selector(tableViewDoubleClick(_:))
         
+        curPath = fileManager.homeDirectoryForCurrentUser.path + "/Documents"
         historyPaths.append(curPath)
         directory = Directory(folderURL: URL(string: curPath)!)
         reloadFileList(backorForward: false)
         
         btnBack.isEnabled = false
         btnForward.isEnabled = false
+        
+        
         
         tvInit()
     }
@@ -106,8 +111,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         if (historyIndex > 0) {
             historyIndex -= 1
             directory = Directory(folderURL: URL(fileURLWithPath: historyPaths[historyIndex]))
-            print(curPath)
-            print(historyIndex)
             
             reloadFileList(backorForward: true)
             btnForward.isEnabled = true
@@ -128,6 +131,81 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         } else {
             btnForward.isEnabled = false
         }
+    }
+    
+    @IBAction func btnRename_Clicked(_ sender: Any) {
+        if (tfFileName.stringValue.trimmingCharacters(in: .whitespaces) == "") {
+            let alert = NSAlert()
+            alert.messageText = "文件名不得为空"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+            return
+        }
+        let file = URL(string: curPath)?.appendingPathComponent(tfFileName.stringValue.trimmingCharacters(in: .whitespaces))
+        if (fileManager.fileExists(atPath: (file?.path)!)) {
+            let alert = NSAlert()
+            alert.messageText = "同名文件已存在"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+            return
+        }
+        try! fileManager.moveItem(atPath: curFile, toPath: (file?.path)!)
+        curFile = (file?.path)!
+        if (file?.pathExtension.lowercased() == "txt") {
+            curTextFile = curFile
+        }
+        btnRefresh_Clicked(self)
+    }
+    
+    @IBAction func btnNewFile_Clicked(_ sender: Any) {
+        if (tfFileName.stringValue.trimmingCharacters(in: .whitespaces) == "") {
+            let alert = NSAlert()
+            alert.messageText = "文件名不得为空"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+            return
+        }
+        let file = URL(string: curPath)?.appendingPathComponent(tfFileName.stringValue.trimmingCharacters(in: .whitespaces))
+        if (fileManager.fileExists(atPath: (file?.path)!)) {
+            let alert = NSAlert()
+            alert.messageText = "同名文件已存在"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+            return
+        }
+        //fileManager.createFile(atPath: (file?.path)!, contents: <#T##Data?#>, attributes: <#T##[String : Any]?#>)
+        fileManager.createFile(atPath: (file?.path)!, contents: nil, attributes: nil)
+        //let tmpStr = "123123"
+        //ry! tmpStr.write(to: file!, atomically: true, encoding: .utf8)
+        
+        btnRefresh_Clicked(self)
+        var index = 0
+        for item in directoryItems {
+            if (item.name == file?.lastPathComponent) {
+                var indexset = NSIndexSet(index: index)
+                tbFiles.selectRowIndexes(indexset as IndexSet, byExtendingSelection: false)
+                return
+            }
+            index += 1
+        }
+    }
+    
+    @IBAction func AddTXTExt_Clicked(_ sender: Any) {
+        tfFileName.stringValue.append(".txt")
+    }
+    
+    @IBAction func btnRefresh_Clicked(_ sender: Any) {
+        directory = Directory(folderURL: URL(string: curPath)!)
+        reloadFileList(backorForward: false)
+    }
+    
+    @IBAction func btnDelete_Clicked(_ sender: Any) {
+        try!  fileManager.removeItem(atPath: curFile)
+        btnRefresh_Clicked(self)
     }
     
     // MARK: TableView DataSource
@@ -166,25 +244,28 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         if (tbFiles.selectedRow >= 0) {
+            btnDelete.isEnabled = true
             let item = directoryItems[tbFiles.selectedRow]
             if (item.isFolder) {
                 directory = Directory(folderURL: item.url)
                 reloadFileList(backorForward: false)
             } else {
+                curFile = item.url.path
                 if (item.url.pathExtension.lowercased() == "txt") {
                     loadTextFile(fileurl: item.url)
                 } else {
                     NSWorkspace.shared().open(item.url as URL)
                 }
             }
+        } else {
+            btnDelete.isEnabled = false
         }
     }
     
-    // MARK: PathControl Delegate
+    // MARK: TextView Delegate
     
-    func pathControl(_ pathControl: NSPathControl, willPopUp menu: NSMenu) {
-        print ("will pop up")
-    }
+    
+    // MARK: PathControl Delegate
     
     @IBAction func pathControl_Clicked(_ sender: Any) {
         if ((pathControl.clickedPathItem?.url) != nil) {
