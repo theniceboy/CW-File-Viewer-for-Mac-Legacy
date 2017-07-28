@@ -11,9 +11,34 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    @IBAction func menuNewWindow_Clicked(_ sender: Any) {
+        /*
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateController(withIdentifier: "MainWindow") as! ViewController
+        let newWindow = NSWindow(contentViewController: vc)
+        let controller = NSWindowController(window: newWindow)
+        controller.newWindowForTab(self)
+        */
+    }
+    
+    @IBAction func newWindowForTab(_ sender: Any?){
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return false
+    }
 
-
+    func applicationShouldHandleReopen(theApplication: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            for window: AnyObject in theApplication.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+        }
+        return true
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
         // Insert code here to initialize your application
     }
 

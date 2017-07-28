@@ -30,4 +30,19 @@ class WindowController: NSWindowController {
             self.contentViewController?.representedObject = openPanel.url
         }
     }
+    
+    var subview: WindowController?
+    
+    @IBAction override func newWindowForTab(_ sender: Any?) {
+        print ("asdf")
+        let story = self.storyboard
+        let windowVC = story?.instantiateInitialController() as! WindowController
+        self.window?.addTabbedWindow(windowVC.window!, ordered: NSWindowOrderingMode.above)
+        self.subview = windowVC
+        windowVC.window?.orderFront(self)
+        windowVC.window?.makeKey()
+        
+    }
+    
+    
 }

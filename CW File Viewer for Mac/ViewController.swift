@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate, NSTextViewDelegate {
+class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate, NSTextViewDelegate {
 
     // MARK: Outlets
     
@@ -118,6 +118,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     // MARK: Startups
     
+    override func viewDidAppear() {
+        self.view.window?.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbFiles.delegate = self
@@ -136,6 +140,60 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         
         tvInit()
+    }
+    
+    func windowShouldClose(_ sender: Any) -> Bool {
+        if (firstOpen) {
+            return true
+        }
+        
+        var doclose: Bool = false
+        
+        if (curContent != tvMain.string) {
+            let alert = NSAlert()
+            alert.messageText = "文件最新的编辑未保存，是否保存？"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "保存")
+            alert.addButton(withTitle: "不保存")
+            alert.addButton(withTitle: "取消")
+            alert.beginSheetModal(for: self.view.window!, completionHandler: { (returnCode: NSModalResponse) in
+                if (returnCode == 1000) {
+                    do {
+                        try self.tvMain.string?.write(toFile: self.curTextFile, atomically: true, encoding: String.Encoding.utf8)
+                        doclose = true
+                    } catch {
+                        let savefail = NSAlert()
+                        savefail.messageText = "保存失败"
+                        savefail.alertStyle = NSAlertStyle.critical
+                        savefail.addButton(withTitle: "确定")
+                        savefail.runModal()
+                    }
+                } else if (returnCode == 1001) {
+                    doclose = true
+                }
+                self.view.window?.close()
+            })
+        } else {
+            doclose = true
+        }
+        return doclose
+            /*
+        {
+            if (curContent != tvMain.string) {
+                do {
+                    try tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+                } catch {
+                    let savefail = NSAlert()
+                    alert.messageText = "保存失败"
+                    alert.alertStyle = NSAlertStyle.critical
+                    alert.addButton(withTitle: "确定")
+                    alert.runModal()
+                }
+            }
+        }
+ */
+        //let choice = alert.runModal()
+        return false
     }
 
     override var representedObject: Any? {
@@ -286,7 +344,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         return directoryItems.count
     }
 
-    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var image: NSImage?
         var text: String = ""
