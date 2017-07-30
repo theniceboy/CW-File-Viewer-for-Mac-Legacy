@@ -60,7 +60,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New Window" keyEquivalent="t" id="Was-JA-tGl">
+                                        <menuItem title="New Tab" keyEquivalent="t" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newWindowForTab:" target="Ady-hI-5gd" id="9nO-2y-DR2"/>
                                             </connections>
@@ -664,8 +664,9 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="CW_File_Viewer_for_Mac" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="CW File Viewer for Mac 1.0 beta 4" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="CW File Viewer for Mac 1.0 beta 5" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -776,9 +777,12 @@
                                     <constraint firstAttribute="height" constant="25" id="Xgo-ie-kBI"/>
                                     <constraint firstAttribute="width" constant="110" id="qWt-lY-LUk"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="使用默认程序" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nfE-AJ-cRO">
+                                <buttonCell key="cell" type="push" title="Finder中打开" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nfE-AJ-cRO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="14"/>
+                                    <font key="font" size="14" name=".PingFangSC-Regular"/>
+                                    <connections>
+                                        <action selector="btnOpenInFinder_Clicked:" target="XfG-lQ-9wD" id="ksv-XT-10b"/>
+                                    </connections>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qDH-Fq-YZ3">
@@ -935,6 +939,16 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vIQ-Sb-Ak9">
+                                <rect key="frame" x="982" y="568" width="122" height="36"/>
+                                <buttonCell key="cell" type="push" title="保存" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Abe-P6-YL0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnSave_Clicked:" target="XfG-lQ-9wD" id="HYS-57-PR6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="JpN-fR-FUu" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="26P-Qc-UOn"/>
@@ -942,6 +956,7 @@
                             <constraint firstItem="3X0-pX-48O" firstAttribute="height" secondItem="qDH-Fq-YZ3" secondAttribute="height" id="4Bg-kK-oTd"/>
                             <constraint firstItem="5Kg-aH-VrA" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="12" id="4nd-ao-844"/>
                             <constraint firstItem="A8L-hX-lFa" firstAttribute="leading" secondItem="TZ5-KS-CDD" secondAttribute="trailing" constant="12" id="7y4-Kt-vXN"/>
+                            <constraint firstItem="vIQ-Sb-Ak9" firstAttribute="leading" secondItem="A8L-hX-lFa" secondAttribute="trailing" constant="12" id="9Io-Q3-Jq5"/>
                             <constraint firstItem="slP-6X-8yT" firstAttribute="top" secondItem="nVg-ND-sg5" secondAttribute="bottom" constant="4" id="BD1-JZ-wv6"/>
                             <constraint firstItem="5Kg-aH-VrA" firstAttribute="leading" secondItem="uzw-Mb-aiY" secondAttribute="trailing" constant="10" id="Bek-aS-kaU"/>
                             <constraint firstItem="vSG-Zs-ZE7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="DhI-uD-8oe"/>
@@ -961,7 +976,10 @@
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="top" secondItem="vSG-Zs-ZE7" secondAttribute="top" id="UWP-yJ-lOr"/>
                             <constraint firstItem="2tl-Zz-2KL" firstAttribute="leading" secondItem="nVg-ND-sg5" secondAttribute="trailing" constant="8" id="UtL-W5-vWf"/>
                             <constraint firstItem="nVg-ND-sg5" firstAttribute="top" secondItem="x0k-gH-eOv" secondAttribute="bottom" constant="5" id="V6n-oy-csF"/>
+                            <constraint firstItem="vIQ-Sb-Ak9" firstAttribute="width" secondItem="A8L-hX-lFa" secondAttribute="width" id="WTl-jB-ZDx"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="leading" secondItem="vSG-Zs-ZE7" secondAttribute="trailing" constant="8" id="XJj-3W-LhT"/>
+                            <constraint firstItem="vIQ-Sb-Ak9" firstAttribute="top" secondItem="A8L-hX-lFa" secondAttribute="top" id="ZVm-XL-NRR"/>
+                            <constraint firstItem="vIQ-Sb-Ak9" firstAttribute="height" secondItem="A8L-hX-lFa" secondAttribute="height" id="atf-7J-QIU"/>
                             <constraint firstAttribute="trailing" secondItem="TtT-vR-yUv" secondAttribute="trailing" constant="20" id="crX-d0-cq6"/>
                             <constraint firstItem="qDH-Fq-YZ3" firstAttribute="top" secondItem="JpN-fR-FUu" secondAttribute="top" id="eDn-ZJ-qVO"/>
                             <constraint firstItem="x0k-gH-eOv" firstAttribute="width" secondItem="vSG-Zs-ZE7" secondAttribute="width" id="edn-bP-Sn4"/>
@@ -995,12 +1013,14 @@
                         <outlet property="btnBack" destination="vSG-Zs-ZE7" id="aQa-Iy-qKB"/>
                         <outlet property="btnDelete" destination="uzw-Mb-aiY" id="YHw-t4-vyX"/>
                         <outlet property="btnForward" destination="x0k-gH-eOv" id="bmW-Dw-rcF"/>
+                        <outlet property="btnSave" destination="vIQ-Sb-Ak9" id="W6a-1Q-Es5"/>
                         <outlet property="lbFileCount" destination="slP-6X-8yT" id="zH0-aO-veu"/>
                         <outlet property="lbFileWordCount" destination="Ajm-EE-GL0" id="b4Y-ya-fOx"/>
                         <outlet property="pathControl" destination="5Kg-aH-VrA" id="olM-B1-dwv"/>
                         <outlet property="tbFiles" destination="dp0-HY-JyW" id="sE0-TU-UM3"/>
                         <outlet property="tfFileName" destination="2tl-Zz-2KL" id="2VM-gs-Hm7"/>
                         <outlet property="tvMain" destination="Vmx-QP-BB7" id="A7J-N8-Lox"/>
+                        <outlet property="vMain" destination="m2S-Jp-Qdl" id="vb1-dV-MRh"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

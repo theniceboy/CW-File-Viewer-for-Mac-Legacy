@@ -12,6 +12,7 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
 
     // MARK: Outlets
     
+    @IBOutlet var vMain: NSView!
     @IBOutlet weak var tbFiles: NSTableView!
     @IBOutlet weak var btnBack: NSButton!
     @IBOutlet weak var btnForward: NSButton!
@@ -21,10 +22,17 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
     @IBOutlet weak var btnDelete: NSButton!
     @IBOutlet weak var lbFileCount: NSTextField!
     @IBOutlet weak var lbFileWordCount: NSTextField!
+    @IBOutlet weak var btnSave: NSButton!
     
     // MARK: Vars & Lets
     
-    var firstOpen: Bool = true
+    var firstOpen: Bool = true {
+        didSet {
+            if (!firstOpen) {
+                btnSave.isEnabled = true
+            }
+        }
+    }
     
     let fileManager: FileManager = FileManager()
     
@@ -69,6 +77,8 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         }
         
         lbFileCount.stringValue = "\(directoryItems.count)个项目"
+        
+        self.view.window?.title = curPath
     }
     
     func loadTextFile (fileurl: URL) {
@@ -131,13 +141,11 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         
         curPath = fileManager.homeDirectoryForCurrentUser.path + "/Desktop"
         historyPaths.append(curPath)
-        directory = Directory(folderURL: URL(string: curPath)!)
+        directory = Directory(folderURL: URL(fileURLWithPath: curPath))
         reloadFileList(backorForward: false)
         
         btnBack.isEnabled = false
         btnForward.isEnabled = false
-        
-        
         
         tvInit()
     }
@@ -193,7 +201,6 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         }
  */
         //let choice = alert.runModal()
-        return false
     }
 
     override var representedObject: Any? {
@@ -231,6 +238,10 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         }
     }
     
+    @IBAction func btnOpenInFinder_Clicked(_ sender: Any) {
+        NSWorkspace.shared().openFile(curPath)
+    }
+    
     @IBAction func btnRename_Clicked(_ sender: Any) {
         if (tfFileName.stringValue.trimmingCharacters(in: .whitespaces) == "") {
             let alert = NSAlert()
@@ -240,8 +251,9 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             alert.runModal()
             return
         }
-        let file = URL(string: curPath)?.appendingPathComponent(tfFileName.stringValue.trimmingCharacters(in: .whitespaces))
-        if (fileManager.fileExists(atPath: (file?.path)!)) {
+        let filepath = curPath + "/" + tfFileName.stringValue.trimmingCharacters(in: .whitespaces)
+        let fileurl = URL(fileURLWithPath: filepath)
+        if (fileManager.fileExists(atPath: filepath)) {
             let alert = NSAlert()
             alert.messageText = "同名文件已存在"
             alert.alertStyle = NSAlertStyle.critical
@@ -250,7 +262,7 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             return
         }
         do {
-            try fileManager.moveItem(atPath: curFile, toPath: (file?.path)!)
+            try fileManager.moveItem(atPath: curFile, toPath: filepath)
         } catch {
             let alert = NSAlert()
             alert.messageText = "重命名文件失败"
@@ -258,8 +270,8 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             alert.addButton(withTitle: "确定")
             alert.runModal()
         }
-        curFile = (file?.path)!
-        if (file?.pathExtension.lowercased() == "txt") {
+        curFile = filepath
+        if (fileurl.pathExtension.lowercased() == "txt") {
             curTextFile = curFile
         }
         btnRefresh_Clicked(self)
@@ -274,8 +286,13 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             alert.runModal()
             return
         }
-        let file = URL(string: curPath)?.appendingPathComponent(tfFileName.stringValue.trimmingCharacters(in: .whitespaces))
-        if (fileManager.fileExists(atPath: (file?.path)!)) {
+        print(curPath)
+        let filepath = curPath + "/" + tfFileName.stringValue.trimmingCharacters(in: .whitespaces)
+        let fileurl = URL(fileURLWithPath: filepath)
+        print(fileurl)
+        print(filepath)
+        
+        if (fileManager.fileExists(atPath: filepath)) {
             let alert = NSAlert()
             alert.messageText = "同名文件/文件夹已存在"
             alert.alertStyle = NSAlertStyle.critical
@@ -284,9 +301,12 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             return
         }
         
-        if (file?.pathExtension == "") {
+        let filename = filepath.components(separatedBy: "/").last
+        let fileext = filepath.components(separatedBy: ".").last
+        
+        if (fileext == "" || filepath.components(separatedBy: ".").count == 1) {
             do {
-                try fileManager.createDirectory(atPath: (file?.path)!, withIntermediateDirectories: false, attributes: nil)
+                try fileManager.createDirectory(atPath: filepath, withIntermediateDirectories: false, attributes: nil)
             } catch {
                 let alert = NSAlert()
                 alert.messageText = "新建文件夹失败"
@@ -297,13 +317,13 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             //btnRefresh_Clicked(self)
             //return
         } else {
-            fileManager.createFile(atPath: (file?.path)!, contents: nil, attributes: nil)
+            fileManager.createFile(atPath: filepath, contents: nil, attributes: nil)
         }
         
         btnRefresh_Clicked(self)
         var index = 0
         for item in directoryItems {
-            if (item.name == file?.lastPathComponent) {
+            if (item.name == filename) {
                 let indexset = NSIndexSet(index: index)
                 tbFiles.selectRowIndexes(indexset as IndexSet, byExtendingSelection: false)
                 return
@@ -317,7 +337,7 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
     }
     
     @IBAction func btnRefresh_Clicked(_ sender: Any) {
-        directory = Directory(folderURL: URL(string: curPath)!)
+        directory = Directory(folderURL: URL(fileURLWithPath: curPath))
         reloadFileList(backorForward: false)
     }
     
@@ -334,8 +354,24 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
     
     @IBAction func BtnAddDateTime_Clicked(_ sender: Any) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH;mm"
+        formatter.dateFormat = "yyyy-MM-dd HHmm"
         tfFileName.stringValue.append(formatter.string(from: NSDate() as Date))
+    }
+    
+    @IBAction func saveDocument(_ sender: AnyObject?) {
+        btnSave_Clicked(self)
+    }
+    
+    @IBAction open func btnSave_Clicked(_ sender: Any) {
+        do {
+            try tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            let alert = NSAlert()
+            alert.messageText = "文件保存失败"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+        }
     }
     
     // MARK: TableView DataSource
