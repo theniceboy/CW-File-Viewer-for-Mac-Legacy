@@ -34,7 +34,6 @@ class WindowController: NSWindowController {
     var subview: WindowController?
     
     @IBAction override func newWindowForTab(_ sender: Any?) {
-        print ("asdf")
         let story = self.storyboard
         let windowVC = story?.instantiateInitialController() as! WindowController
         self.window?.addTabbedWindow(windowVC.window!, ordered: NSWindowOrderingMode.above)

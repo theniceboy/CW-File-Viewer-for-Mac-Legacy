@@ -384,7 +384,9 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
     }
     
     @IBAction func closeWindow(_ sender: AnyObject?) {
-        self.view.window?.close()
+        if (windowShouldClose(self)) {
+            self.view.window?.close()
+        }
     }
     
     // MARK: TableView DataSource
