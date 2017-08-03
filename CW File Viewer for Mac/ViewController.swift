@@ -354,17 +354,15 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
     
     @IBAction func BtnAddDateTime_Clicked(_ sender: Any) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HHmm"
+        formatter.dateFormat = "yyyy-MM-dd HH;mm"
         tfFileName.stringValue.append(formatter.string(from: NSDate() as Date))
     }
     
-    @IBAction func saveDocument(_ sender: AnyObject?) {
-        btnSave_Clicked(self)
-    }
     
     @IBAction open func btnSave_Clicked(_ sender: Any) {
         do {
             try tvMain.string?.write(toFile: curTextFile, atomically: true, encoding: String.Encoding.utf8)
+            curContent = tvMain.string!
         } catch {
             let alert = NSAlert()
             alert.messageText = "文件保存失败"
@@ -372,6 +370,21 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             alert.addButton(withTitle: "确定")
             alert.runModal()
         }
+    }
+    
+    // MARK: Menu Items
+    
+    @IBAction func saveDocument(_ sender: AnyObject?) {
+        btnSave_Clicked(self)
+    }
+    
+    @IBAction func openiCloud(_ sender: AnyObject?) {
+        directory = Directory(folderURL: URL(fileURLWithPath: fileManager.homeDirectoryForCurrentUser.path + "/Library/Mobile Documents/com~apple~CloudDocs"))
+        reloadFileList(backorForward: false)
+    }
+    
+    @IBAction func closeWindow(_ sender: AnyObject?) {
+        self.view.window?.close()
     }
     
     // MARK: TableView DataSource
