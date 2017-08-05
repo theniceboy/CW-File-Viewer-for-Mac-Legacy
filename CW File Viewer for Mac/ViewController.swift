@@ -389,6 +389,53 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         }
     }
     
+    @IBAction func openBothLincolnFolder(_ sender: AnyObject?) { // Already Checked
+        
+        //do {
+        
+        let pathComponents: [String] = URL(fileURLWithPath: curPath).pathComponents
+        var path1_Components: [String] = pathComponents // Folder path in desktop
+        var path2_Components: [String] = pathComponents // Folder path in Google Drive
+        var path1: String = "/"
+        var path2: String = "/"
+        
+        if (pathComponents[3] == "Desktop") {
+            path2_Components[3] = "Google 云端硬盘"
+            path2_Components.remove(at: 4)
+            path2_Components[4].removeSubrange(path2_Components[4].startIndex...pathComponents[4].index(path2_Components[4].startIndex, offsetBy: 7))
+            path2_Components[4].remove(at: path2_Components[4].startIndex)
+        } else {
+            path1_Components[3] = "Desktop"
+            path1_Components.insert("Lincoln", at: 4)
+            path1_Components[5] = "Lincoln " + path1_Components[5]
+        }
+        
+        for i in 1 ... path1_Components.count - 1 {
+            path1.append(path1_Components[i])
+            path1.append("/")
+        }
+        path1.remove(at: path1.index(path1.endIndex, offsetBy: -1))
+        
+        for i in 1 ... path2_Components.count - 1 {
+            path2.append(path2_Components[i])
+            path2.append("/")
+        }
+        path2.remove(at: path2.index(path2.endIndex, offsetBy: -1))
+        
+        print(path1)
+        print(path2)
+        
+        NSWorkspace.shared().openFile(path1)
+        NSWorkspace.shared().openFile(path2)
+        
+        /*
+         ["/", "Users", "david", "Desktop", "Lincoln", "Lincoln And"]
+         ["/", "Users", "david", "Google 云端硬盘", "And"]
+        */
+        
+        //} catch { }
+    }
+    
     // MARK: TableView DataSource
     
     func numberOfRows(in tableView: NSTableView) -> Int {
