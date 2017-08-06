@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate, NSTextViewDelegate {
+class frmMain: NSViewController, NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate, NSPathControlDelegate, NSTextViewDelegate {
 
     // MARK: Outlets
     
@@ -81,6 +81,7 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         self.view.window?.title = curPath
     }
     
+    var fromArchive: Bool = false
     func loadTextFile (fileurl: URL) {
         if (fileManager.isReadableFile(atPath: fileurl.path)) {
             if (!firstOpen) {
@@ -93,20 +94,35 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
             var str = ""
             do {
                 str = try String(contentsOf: fileurl, encoding: String.Encoding.utf8)
-                tvMain.string = str
+                if (fromArchive) {
+                    tvMain.string = archiveContent
+                    fromArchive = false
+                } else {
+                    tvMain.string = str
+                }
                 curTextFile = fileurl.path
                 curContent = tvMain.string!
             } catch {
                 do {
                     let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
                     str = try String(contentsOf: fileurl, encoding: String.Encoding(rawValue: enc))
-                    tvMain.string = str
+                    if (fromArchive) {
+                        tvMain.string = archiveContent
+                        fromArchive = false
+                    } else {
+                        tvMain.string = str
+                    }
                     curTextFile = fileurl.path
                     curContent = tvMain.string!
                 } catch {
                     do {
                         str = try String(contentsOf: fileurl, encoding: String.Encoding.ascii)
-                        tvMain.string = str
+                        if (fromArchive) {
+                            tvMain.string = archiveContent
+                            fromArchive = false
+                        } else {
+                            tvMain.string = str
+                        }
                         curTextFile = fileurl.path
                         curContent = tvMain.string!
                     } catch {
@@ -372,7 +388,30 @@ class ViewController: NSViewController, NSWindowDelegate, NSTableViewDataSource,
         }
     }
     
+    @IBAction func btnRemoveExtraEndline_Clicked(_ sender: Any) {
+        tvMain.string = tvMain.string?.replaceAll(of: " \n", with: " ")
+    }
+    
     // MARK: Menu Items
+    
+    var archiveTitle: String = ""
+    var archiveContent: String = ""
+    @IBAction func newTXTfromArchiveOrg(_ sender: AnyObject?) {
+        let link = tfFileName.stringValue.trim()
+        archiveTitle = getArchiveTXTTitle(link: link)
+        archiveContent = getArchiveTXT(link: link)
+        if (archiveTitle.trim() == "" || archiveContent.trim() == "") {
+            let alert = NSAlert()
+            alert.messageText = "文件创建失败"
+            alert.alertStyle = NSAlertStyle.critical
+            alert.addButton(withTitle: "确定")
+            alert.runModal()
+            return
+        }
+        tfFileName.stringValue = archiveTitle + ".txt"
+        fromArchive = true
+        btnNewFile_Clicked(self)
+    }
     
     @IBAction func saveDocument(_ sender: AnyObject?) {
         btnSave_Clicked(self)
