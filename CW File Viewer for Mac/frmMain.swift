@@ -333,7 +333,13 @@ class frmMain: NSViewController, NSWindowDelegate, NSTableViewDataSource, NSTabl
             //btnRefresh_Clicked(self)
             //return
         } else {
-            fileManager.createFile(atPath: filepath, contents: nil, attributes: nil)
+            if (fromArchive) {
+                do {
+                    try archiveContent.write(toFile: fileurl.path, atomically: true, encoding: String.Encoding.utf8)
+                } catch { }
+            } else {
+                fileManager.createFile(atPath: filepath, contents: nil, attributes: nil)
+            }
         }
         
         btnRefresh_Clicked(self)
@@ -408,6 +414,7 @@ class frmMain: NSViewController, NSWindowDelegate, NSTableViewDataSource, NSTabl
             alert.runModal()
             return
         }
+        archiveContent = "Origin Link: " + link + "\n\n\n" + archiveContent
         tfFileName.stringValue = archiveTitle + ".txt"
         fromArchive = true
         btnNewFile_Clicked(self)
